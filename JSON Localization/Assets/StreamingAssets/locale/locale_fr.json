@@ -1,0 +1,17 @@
+{
+	"items":
+	[
+		{
+			"key": "DEMO.MENU.HEADER.LABEL_TEXT",
+			"value": "Localization Demo"
+		},
+		{
+			"key": "DEMO.MENU.LOCALE.LABEL_TEXT",
+			"value": "Langue"
+		},
+		{
+			"key": "DEMO.MENU.INFO.LABEL_TEXT",
+			"value": "Ceci est une démonstration de localisation utilisant JSON "
+		}
+	]
+}
