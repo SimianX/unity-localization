@@ -18,12 +18,14 @@ public class LocalizationManager : MonoBehaviour
     public bool Ready { get; private set; } // Used by the Loading Screen Manager to tell when this this manager's Start coroutine has finished
 
     private Dictionary<string, string> _localizedDictionary; // A dictionary built during the manager's start coroutine.
-                                                            // Used to retrieve text for Localized Text components
+                                                             // Used to retrieve text for Localized Text components
 
-    private StringBuilder _filenameStringBuilder; // Used to build the path to the locale-dependent JSON dictionary stored in the StreamingAssets directory
-    private LocalizationData _loadedData; // Stores the localization data from the conversion of the loaded JSON text
-    private string _loadedJsonText; // Stores the JSON text before converting from JSON to the Localization Data csharp container
-    private string _loadedLanguage; // Stores the 2-character ISO language code. Used for building a path to the locale dict
+    private StringBuilder _filenameStringBuilder;   // Used to build the path to the locale-dependent JSON dictionary stored in the StreamingAssets directory
+    private LocalizationData _loadedData;           // Stores the localization data from the conversion of the loaded JSON text
+    private string _loadedJsonText;                 // Stores the JSON text before converting from JSON to the Localization Data csharp container
+    private string _loadedLanguage;                 // Stores the 2-character ISO language code. Used for building a path to the locale dict
+
+    public event EventHandler OnLanguageOverride;
 
     // Called on scene Awake
     private void Awake()
@@ -68,13 +70,13 @@ public class LocalizationManager : MonoBehaviour
 
         if (string.IsNullOrEmpty(_loadedJsonText))
         {
-            if (languageCode.ToLower().Equals(LocaleHelper.GetDefaultSupportedLanguageCode().ToLower()))
+            if (languageCode.ToLower().Equals(LocaleHelper.DefaultSupportedLanguageCode.ToLower()))
             {
                 // Log an error due to missing file for default language.
-                Debug.LogError("Localization file for default language: " + LocaleHelper.GetDefaultSupportedLanguageCode() + " is missing");
+                Debug.LogError("Localization file for default language: " + LocaleHelper.DefaultSupportedLanguageCode + " is missing");
             }
 
-            yield return LoadJsonLanguageData(LocaleHelper.GetDefaultSupportedLanguageCode());
+            yield return LoadJsonLanguageData(LocaleHelper.DefaultSupportedLanguageCode);
         }
         else
         {
@@ -174,5 +176,14 @@ public class LocalizationManager : MonoBehaviour
         }
 
         throw new MissingLocalizationException(string.Format("Missing localization for key: {0} and language: {1}.", localizationKey, _loadedLanguage));
+    }
+
+    public IEnumerator OverrideLanguage(string languageCode)
+    {
+        Ready = false;
+        _filenameStringBuilder = new StringBuilder();
+        yield return StartCoroutine(LoadJsonLanguageData(languageCode));
+        OnLanguageOverride?.Invoke(this, EventArgs.Empty);
+        Ready = true;
     }
 }

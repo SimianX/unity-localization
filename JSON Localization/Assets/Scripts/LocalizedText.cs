@@ -9,12 +9,24 @@ public class LocalizedText : MonoBehaviour
     private string localizationKey = default;
     private TextMeshProUGUI textComponent;
 
-    public string LocalizationKey
-    {
-        get { return localizationKey; }
-    }
+    public string LocalizationKey => localizationKey;
 
     private void Awake()
+    {
+        InvalidateText();
+    }
+
+    private void OnEnable()
+    {
+        LocalizationManager.Instance.OnLanguageOverride += Instance_OnLanguageOverride;
+    }
+
+    private void OnDisable()
+    {
+        LocalizationManager.Instance.OnLanguageOverride -= Instance_OnLanguageOverride;
+    }
+
+    private void Instance_OnLanguageOverride(object sender, EventArgs e)
     {
         InvalidateText();
     }
