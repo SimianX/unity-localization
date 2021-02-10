@@ -22,6 +22,6 @@ public class LanguageDropdown : MonoBehaviour
     /// </summary>
     public void OverrideLanguage()
     {
-        LocalizationManager.Instance.OverrideLanguage(_dropdown.options[_dropdown.value].text);
+        StartCoroutine(LocalizationManager.Instance.OverrideLanguage(_dropdown.options[_dropdown.value].text));
     }
 }

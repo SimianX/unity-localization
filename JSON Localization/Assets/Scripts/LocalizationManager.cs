@@ -25,6 +25,8 @@ public class LocalizationManager : MonoBehaviour
     private string _loadedJsonText;                 // Stores the JSON text before converting from JSON to the Localization Data csharp container
     private string _loadedLanguage;                 // Stores the 2-character ISO language code. Used for building a path to the locale dict
 
+    public event EventHandler OnLanguageOverride;
+
     // Called on scene Awake
     private void Awake()
     {
@@ -176,11 +178,12 @@ public class LocalizationManager : MonoBehaviour
         throw new MissingLocalizationException(string.Format("Missing localization for key: {0} and language: {1}.", localizationKey, _loadedLanguage));
     }
 
-    public void OverrideLanguage(string languageCode)
+    public IEnumerator OverrideLanguage(string languageCode)
     {
         Ready = false;
         _filenameStringBuilder = new StringBuilder();
-        StartCoroutine(LoadJsonLanguageData(languageCode));
+        yield return StartCoroutine(LoadJsonLanguageData(languageCode));
+        OnLanguageOverride?.Invoke(this, EventArgs.Empty);
         Ready = true;
     }
 }

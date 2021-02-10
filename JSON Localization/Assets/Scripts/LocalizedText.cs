@@ -16,6 +16,21 @@ public class LocalizedText : MonoBehaviour
         InvalidateText();
     }
 
+    private void OnEnable()
+    {
+        LocalizationManager.Instance.OnLanguageOverride += Instance_OnLanguageOverride;
+    }
+
+    private void OnDisable()
+    {
+        LocalizationManager.Instance.OnLanguageOverride -= Instance_OnLanguageOverride;
+    }
+
+    private void Instance_OnLanguageOverride(object sender, EventArgs e)
+    {
+        InvalidateText();
+    }
+
     public void SetLocalizationKey(string key)
     {
         localizationKey = key;
