@@ -176,7 +176,7 @@ public class LocalizationManager : MonoBehaviour
         throw new MissingLocalizationException(string.Format("Missing localization for key: {0} and language: {1}.", localizationKey, _loadedLanguage));
     }
 
-    public void OverrideLangugae(string languageCode)
+    public void OverrideLanguage(string languageCode)
     {
         Ready = false;
         StartCoroutine(LoadJsonLanguageData(languageCode));
