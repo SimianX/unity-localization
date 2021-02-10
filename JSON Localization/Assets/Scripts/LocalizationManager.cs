@@ -68,13 +68,13 @@ public class LocalizationManager : MonoBehaviour
 
         if (string.IsNullOrEmpty(_loadedJsonText))
         {
-            if (languageCode.ToLower().Equals(LocaleHelper.GetDefaultSupportedLanguageCode().ToLower()))
+            if (languageCode.ToLower().Equals(LocaleHelper.DefaultSupportedLanguageCode.ToLower()))
             {
                 // Log an error due to missing file for default language.
-                Debug.LogError("Localization file for default language: " + LocaleHelper.GetDefaultSupportedLanguageCode() + " is missing");
+                Debug.LogError("Localization file for default language: " + LocaleHelper.DefaultSupportedLanguageCode + " is missing");
             }
 
-            yield return LoadJsonLanguageData(LocaleHelper.GetDefaultSupportedLanguageCode());
+            yield return LoadJsonLanguageData(LocaleHelper.DefaultSupportedLanguageCode);
         }
         else
         {

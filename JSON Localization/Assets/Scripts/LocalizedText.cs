@@ -9,10 +9,7 @@ public class LocalizedText : MonoBehaviour
     private string localizationKey = default;
     private TextMeshProUGUI textComponent;
 
-    public string LocalizationKey
-    {
-        get { return localizationKey; }
-    }
+    public string LocalizationKey => localizationKey;
 
     private void Awake()
     {
