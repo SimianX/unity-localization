@@ -179,6 +179,7 @@ public class LocalizationManager : MonoBehaviour
     public void OverrideLanguage(string languageCode)
     {
         Ready = false;
+        _filenameStringBuilder = new StringBuilder();
         StartCoroutine(LoadJsonLanguageData(languageCode));
         Ready = true;
     }
