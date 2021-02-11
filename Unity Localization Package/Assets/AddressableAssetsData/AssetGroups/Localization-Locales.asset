@@ -22,15 +22,15 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 11400000, guid: f964ba8c61007104eb086f5488d222f4, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: f964ba8c61007104eb086f5488d222f4, type: 2}
   - m_GUID: 12f2107ebee0b3a4ea39f405df87f9b3
     m_Address: French (fr)
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 11400000, guid: 12f2107ebee0b3a4ea39f405df87f9b3, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 12f2107ebee0b3a4ea39f405df87f9b3, type: 2}
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: c2202aaf345110c4ea96fc43570a43a2, type: 2}
   m_SchemaSet:

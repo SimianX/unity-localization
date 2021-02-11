@@ -21,14 +21,14 @@ MonoBehaviour:
     m_Address: Flag Test Shared Data
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 11400000, guid: 314faab6bd074ad41a5553f6b4882af1, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 314faab6bd074ad41a5553f6b4882af1, type: 2}
   - m_GUID: f1096ee652b70b249b595a696cf20751
     m_Address: National Anthems Shared Data
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 11400000, guid: f1096ee652b70b249b595a696cf20751, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: f1096ee652b70b249b595a696cf20751, type: 2}
   - m_GUID: 79571f977702d8e42bd4a05292305187
     m_Address: Demo Text Shared Data
     m_ReadOnly: 0
