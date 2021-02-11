@@ -27,7 +27,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 94504251392
-    m_Localized: "Ceci est une d\xE9monstration de localisation utilisant JSON"
+    m_Localized: "Ceci est une d\xE9monstration de localisation utilisant le package
+      de localisation d'Unity"
     m_Metadata:
       m_Items: []
   references:

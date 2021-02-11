@@ -27,7 +27,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 94504251392
-    m_Localized: This is a localization demo using JSON
+    m_Localized: This is a localization demo using Unity's Localization package
     m_Metadata:
       m_Items: []
   references:
