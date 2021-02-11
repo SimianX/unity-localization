@@ -20,11 +20,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 58307407872
-    m_Key: Demo_Dropdown_Label
+    m_Key: Demo_LanguageDropdownLabel
     m_Metadata:
       m_Items: []
   - m_Id: 94504251392
     m_Key: Demo_Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 225320110419968
+    m_Key: Demo_QuitButtonText
     m_Metadata:
       m_Items: []
   m_Metadata:

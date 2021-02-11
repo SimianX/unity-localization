@@ -30,5 +30,9 @@ MonoBehaviour:
     m_Localized: This is a localization demo using Unity's Localization package
     m_Metadata:
       m_Items: []
+  - m_Id: 225320110419968
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

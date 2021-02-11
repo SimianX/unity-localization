@@ -31,5 +31,9 @@ MonoBehaviour:
       de localisation d'Unity"
     m_Metadata:
       m_Items: []
+  - m_Id: 225320110419968
+    m_Localized: Quitter
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
