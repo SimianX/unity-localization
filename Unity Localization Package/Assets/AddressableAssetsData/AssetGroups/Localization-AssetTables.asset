@@ -31,6 +31,20 @@ MonoBehaviour:
     - Locale-fr
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 14704931661775647ac9c87f64d2b46e
+    m_Address: National Anthems_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: eb30d9f1f3a22f24c9f4b562ff61b009
+    m_Address: National Anthems_fr
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-fr
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: c2202aaf345110c4ea96fc43570a43a2, type: 2}
   m_SchemaSet:

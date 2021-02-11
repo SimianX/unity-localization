@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 4396107660714104083}
   - component: {fileID: 5400959159779573345}
   - component: {fileID: 2938411274985445690}
-  - component: {fileID: 284309301237091780}
+  - component: {fileID: 1247561933787253042}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &284309301237091780
+--- !u!114 &1247561933787253042
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,7 +218,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 2232775105594191372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0793ccb15ae338347af16c90fc8e67bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localizationKey: DEMO.MENU.HEADER.LABEL_TEXT
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:79571f977702d8e42bd4a05292305187
+    m_TableEntryReference:
+      m_KeyId: 19531067392
+      m_Key: 
+    m_FallbackState: 0
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2938411274985445690}
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -10,49 +10,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: Flag Test Shared Data
+  m_Name: National Anthems Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: Flag Test
-  m_TableCollectionNameGuidString: 314faab6bd074ad41a5553f6b4882af1
+  m_TableCollectionName: National Anthems
+  m_TableCollectionNameGuidString: f1096ee652b70b249b595a696cf20751
   m_Entries:
-  - m_Id: 398675177472
-    m_Key: Country Flag
+  - m_Id: 6126071808
+    m_Key: Country's National Anthem
     m_Metadata:
       m_Items: []
-  - m_Id: 2172475699200
-    m_Key: New Entry
+  - m_Id: 539649929216
+    m_Key: National Anthem
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items:
     - id: 0
-    - id: 1
   m_KeyGenerator:
-    id: 2
+    id: 1
   references:
     version: 1
     00000000:
       type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
         m_Entries:
-        - m_KeyId: 398675177472
+        - m_KeyId: 6126071808
           m_TableCodes:
           - en
           - fr
-        m_TypeString: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        - m_KeyId: 539649929216
+          m_TableCodes:
+          - en
+          - fr
+        m_TypeString: UnityEngine.AudioClip, UnityEngine.AudioModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
     00000001:
-      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
-      data:
-        m_Entries:
-        - m_KeyId: 2172475699200
-          m_TableCodes:
-          - en
-          - fr
-        m_TypeString: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-    00000002:
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
         asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1613014228674
+        m_CustomEpoch: 1613015919750
