@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
 
+/// <summary>
+/// Container for all rows of a language's localization table.
+/// Each row is comprised of a key value and a text value (standard dictionary)
+/// </summary>
 [System.Serializable]
 public class LocalizationData
 {
