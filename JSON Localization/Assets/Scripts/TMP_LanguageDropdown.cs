@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(TMP_Dropdown))]
-public class LanguageDropdown : MonoBehaviour
+public class TMP_LanguageDropdown : MonoBehaviour
 {
     private TMP_Dropdown _dropdown;
 
