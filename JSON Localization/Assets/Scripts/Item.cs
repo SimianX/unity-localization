@@ -5,6 +5,13 @@
 [System.Serializable]
 public class Item
 {
+    /// <summary>
+    /// Unique value distinguising a row
+    /// </summary>
     public string key;
+
+    /// <summary>
+    /// Text value associsated with key
+    /// </summary>
     public string value;
 }
