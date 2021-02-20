@@ -2,6 +2,13 @@
 using System.Linq;
 using UnityEngine;
 
+/* TODO:
+ * -> Create a list of all supported languages as they are spelt in their own language, i.e. French => Français
+ */
+
+/// <summary>
+/// Contains static methods and expressions 
+/// </summary>
 public static class LocaleHelper
 {
     // IMPORTANT: Whenever a new System Language is added to the SupportedLanguages list,
@@ -10,7 +17,7 @@ public static class LocaleHelper
     //            new language.
 
     /// <summary>
-    /// List of all supported langugages
+    /// List of all supported System Langugages (UnityEngine)
     /// </summary>
     public static List<SystemLanguage> AllSupportedLanguages => new List<SystemLanguage>
     {
@@ -19,7 +26,7 @@ public static class LocaleHelper
     };
 
     /// <summary>
-    /// List of all supported language names (in english)
+    /// List of all supported language names (in English)
     /// </summary>
     public static List<string> AllSupportedLanguageNamesEN => AllSupportedLanguages.Select(lang => lang.ToString()).ToList();
 

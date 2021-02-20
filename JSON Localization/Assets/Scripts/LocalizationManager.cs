@@ -8,7 +8,7 @@ using UnityEngine.Networking;
 
 public class LocalizationManager : MonoBehaviour
 {
-    // String constants used to build the dict file path
+    // Path values
     public const string FILE_EXTENSION = ".json";
     public const string FOLDER_IN_STREAMMING_ASSETS_NAME = "Locale";
     public const string FILENAME_PREFIX = "locale_";
@@ -25,7 +25,8 @@ public class LocalizationManager : MonoBehaviour
     private string _loadedJsonText;                 // Stores the JSON text before converting from JSON to the Localization Data csharp container
     private string _loadedLanguage;                 // Stores the 2-character ISO language code. Used for building a path to the locale dict
 
-    public event EventHandler OnLanguageOverride;
+    public event EventHandler OnLanguageOverride; // Triggered whenever a user overrides the current language.
+                                                  // Useful for letting text elements know they have to change to a new language
 
     // Called on scene Awake
     private void Awake()
@@ -178,12 +179,22 @@ public class LocalizationManager : MonoBehaviour
         throw new MissingLocalizationException(string.Format("Missing localization for key: {0} and language: {1}.", localizationKey, _loadedLanguage));
     }
 
+    /// <summary>
+    /// Sets a new system language for the current runtime.
+    /// </summary>
+    /// <param name="languageCode">
+    /// Two character ISO language code. All supported languages can be found in ApplicationLocale
+    /// </param>
+    /// <returns></returns>
     public IEnumerator OverrideLanguage(string languageCode)
     {
-        Ready = false;
-        _filenameStringBuilder = new StringBuilder();
-        yield return StartCoroutine(LoadJsonLanguageData(languageCode));
-        OnLanguageOverride?.Invoke(this, EventArgs.Empty);
-        Ready = true;
+        if (Ready) // Only let one override process execute at a time
+        {
+            Ready = false;
+            _filenameStringBuilder = new StringBuilder();
+            yield return StartCoroutine(LoadJsonLanguageData(languageCode));
+            OnLanguageOverride?.Invoke(this, EventArgs.Empty);
+            Ready = true;
+        }
     }
 }
