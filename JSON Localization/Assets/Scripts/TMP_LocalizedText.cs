@@ -11,9 +11,13 @@ public class TMP_LocalizedText : MonoBehaviour
 {
     [SerializeField]
     private string localizationKey = default;
-    private TextMeshProUGUI textComponent;
 
+    /// <summary>
+    /// Getter for component's localization key
+    /// </summary>
     public string LocalizationKey => localizationKey;
+
+    private TextMeshProUGUI _textComponent;
 
     private void Awake()
     {
@@ -57,14 +61,14 @@ public class TMP_LocalizedText : MonoBehaviour
     /// </summary>
     private void SetLocalizedText()
     {
-        if (textComponent == null) // Lazy Text Component assignment (Might want to make it strict)
+        if (_textComponent == null) // Lazy Text Component assignment (Might want to make it strict)
         {
-            textComponent = GetComponent<TextMeshProUGUI>();
+            _textComponent = GetComponent<TextMeshProUGUI>();
         }
 
         try // Attempt to retrieve text from Localization Manager Instance
         {
-            textComponent.text = LocalizationManager.Instance.GetTextForKey(localizationKey);
+            _textComponent.text = LocalizationManager.Instance.GetTextForKey(localizationKey);
         }
         catch (Exception e) // Print Exception in editor
         {
