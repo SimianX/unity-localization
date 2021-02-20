@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Assets-fr
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Assets-fr
+  m_Data:
+    m_SerializedData: []
+  m_GUID: adb1351a69ba6144d8547363db526f32
+  m_SerializeEntries:
+  - m_GUID: cc9dff0f04a2ac740b40dba24163c12e
+    m_Address: 1920px-Flag_of_France.svg
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-fr
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 2639f27e7aa37874f8a7f284e8c06947
+    m_Address: La_Marseillaise
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-fr
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: c2202aaf345110c4ea96fc43570a43a2, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7e00788da6f0bd943a60fe390fcd6a9e, type: 2}
+    - {fileID: 11400000, guid: 0d7121ae79569464e927cbb523b94ff9, type: 2}
