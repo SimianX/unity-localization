@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// Container for all rows of a language's localization table.
 /// Each row is comprised of a key value and a text value (standard dictionary)
 /// </summary>
-[System.Serializable]
+[Serializable]
 public class LocalizationData
 {
     public List<Item> items;
