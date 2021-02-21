@@ -57,7 +57,7 @@ public class TMP_LocalizedText : MonoBehaviour, ILocalizable
 
     /// <summary>
     /// Will attempt to retrieve text from Localization Manager Instance.
-    /// If it fails, print exception without modifying text component's content value
+    /// If it fails, it will NOT modify the text component's content value
     /// </summary>
     public void LocalizeComponent()
     {
