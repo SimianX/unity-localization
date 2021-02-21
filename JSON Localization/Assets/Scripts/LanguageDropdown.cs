@@ -1,15 +1,15 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
-/// TMP_LanguageDropdown will rebuild attached dropdown's options to reflect the application's supported language options.
+/// LanguageDropdown will rebuild attached dropdown's options to reflect the application's supported language options.
 /// When attaching script to a dropdown component, ensure the OverrideLanguage method is called on its OnValueChanged UnityEvent
 /// </summary>
-[RequireComponent(typeof(TMP_Dropdown))]
-public class TMP_LanguageDropdown : MonoBehaviour, ILanguageOverrider
+[RequireComponent(typeof(Dropdown))]
+public class LanguageDropdown : MonoBehaviour, ILanguageOverrider
 {
-    private TMP_Dropdown _dropdown; // Used to attached dropdown's rebuild options during scene load
-                                    // and define the Selected Language Code expression with the options
+    private Dropdown _dropdown; // Used to attached dropdown's rebuild options during scene load
+                                // and define the Selected Language Code expression with the options
 
     /// <summary>
     /// Accessor for implementing instance's currently selected language code
@@ -18,7 +18,7 @@ public class TMP_LanguageDropdown : MonoBehaviour, ILanguageOverrider
 
     private void Awake()
     {
-        _dropdown = GetComponent<TMP_Dropdown>();
+        _dropdown = GetComponent<Dropdown>();
 
         // Build options list from language codes
         _dropdown.ClearOptions();
@@ -26,7 +26,7 @@ public class TMP_LanguageDropdown : MonoBehaviour, ILanguageOverrider
     }
 
     /// <summary>
-    /// A method that overrides the application's language when given a supported language code
+    /// A method that overrides the application's language when given a supported language code.
     /// This method is designed to attach easily to the dropdown component's On Value Change event
     /// </summary>
     public void TriggerOverride()
