@@ -7,7 +7,7 @@ using UnityEngine;
 /// If the Localization Key is invalid, the componenet will not replace any text
 /// </summary>
 [RequireComponent(typeof(TextMeshProUGUI))]
-public class TMP_LocalizedText : MonoBehaviour
+public class TMP_LocalizedText : MonoBehaviour, ILocalizable
 {
     [SerializeField]
     private string localizationKey = default;
@@ -21,7 +21,7 @@ public class TMP_LocalizedText : MonoBehaviour
 
     private void Awake()
     {
-        SetLocalizedText();
+        LocalizeComponent();
     }
 
     private void OnEnable()
@@ -41,7 +41,7 @@ public class TMP_LocalizedText : MonoBehaviour
     /// <param name="e"></param>
     private void Instance_OnLanguageOverride(object sender, EventArgs e)
     {
-        SetLocalizedText();
+        LocalizeComponent();
     }
 
     /// <summary>
@@ -52,14 +52,14 @@ public class TMP_LocalizedText : MonoBehaviour
     public void SetLocalizationKey(string key)
     {
         localizationKey = key;
-        SetLocalizedText();
+        LocalizeComponent();
     }
 
     /// <summary>
     /// Will attempt to retrieve text from Localization Manager Instance.
     /// If it fails, print exception without modifying text component's content value
     /// </summary>
-    private void SetLocalizedText()
+    public void LocalizeComponent()
     {
         if (_textComponent == null) // Lazy Text Component assignment (Might want to make it strict)
         {
