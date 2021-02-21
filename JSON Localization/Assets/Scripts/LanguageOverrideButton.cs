@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Component that supplies a TriggerOverride method that, when called, will trigger a language override with its specified language code
+/// </summary>
 [RequireComponent(typeof(Button))]
 public class LanguageOverrideButton : MonoBehaviour, ILanguageOverrider
 {
     [SerializeField]
-    private string languageCode;
+    private string languageCode; // Manually set language code in editor
 
     /// <summary>
     /// Accessor for implementing instance's currently selected language code.
