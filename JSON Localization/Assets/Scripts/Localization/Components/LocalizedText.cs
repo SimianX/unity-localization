@@ -1,20 +1,20 @@
 ﻿using System;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
-/// TMP_LocalizedText will change the contents of a TMP_Text element to match the string value corresponding to the Localization Key.
+/// LocalizedText will change the contents of a Text element to match the string value corresponding to the Localization Key.
 /// If the Localization Key is invalid, the componenet will not replace any text
 /// </summary>
-[RequireComponent(typeof(TextMeshProUGUI))]
-public class TMP_LocalizedText : MonoBehaviour, ILocalizable
+[RequireComponent(typeof(Text))]
+public class LocalizedText : MonoBehaviour, ILocalizable
 {
     [SerializeField]
     private string localizationKey = default;
 
     public string LocalizationKey => localizationKey;
 
-    private TextMeshProUGUI _textComponent;
+    private Text _textComponent;
 
     private void Awake()
     {
@@ -60,7 +60,7 @@ public class TMP_LocalizedText : MonoBehaviour, ILocalizable
     {
         if (_textComponent == null) // Lazy component assignment (might want to make it strict)
         {
-            _textComponent = GetComponent<TextMeshProUGUI>();
+            _textComponent = GetComponent<Text>();
         }
 
         try // Attempt to retrieve text from Localization Manager Instance
