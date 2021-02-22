@@ -23,6 +23,18 @@ public class LanguageDropdown : MonoBehaviour, ILanguageOverrider
         // Build options list from language codes
         _dropdown.ClearOptions();
         _dropdown.AddOptions(LocaleHelper.AllSupportedLanguageCodes);
+
+        _dropdown.value = 0; // Default value
+
+        // Search for loaded language code to derive default dropdown value
+        for (int i = 0; i < _dropdown.options.Count; i++)
+        {
+            if (_dropdown.options[i].text.ToLower() == LocalizationManager.Instance.LoadedLanguageCode.ToLower())
+            {
+                _dropdown.value = i;
+                i = _dropdown.options.Count;
+            }
+        }
     }
 
     /// <summary>
