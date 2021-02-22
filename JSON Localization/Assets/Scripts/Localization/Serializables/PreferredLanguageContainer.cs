@@ -9,7 +9,7 @@ using UnityEngine;
 public class PreferredLanguageContainer
 {
     private const string RootDirectory = "Preferences";
-    private const string Path = "LanguageCode.json";
+    private const string Path = RootDirectory + "/" + "LanguageCode.json";
 
     public string languageCode;
 
