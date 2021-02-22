@@ -8,14 +8,14 @@ using UnityEngine;
 [Serializable]
 public class PreferredLanguageContainer
 {
-    private const string RootDirectory = "Preferences";
-    private const string Path = RootDirectory + "/" + "LanguageCode.json";
+    public const string RootDirectory = "Preferences";
+    public const string Path = RootDirectory + "/" + "LanguageCode.json";
 
     public string languageCode;
 
     public PreferredLanguageContainer()
     {
-        languageCode = LocaleHelper.GetSupportedLanguageCode();
+        languageCode = LocaleHelper.GetSupportedLanguageCode(); // Default to the system locale if supported
     }
 
     public PreferredLanguageContainer(string languageCode)
@@ -23,6 +23,9 @@ public class PreferredLanguageContainer
         this.languageCode = languageCode;
     }
 
+    /// <summary>
+    /// If the Root Directory doesn't exist, make it
+    /// </summary>
     private static void ValidateDirectory()
     {
         if (!Directory.Exists(RootDirectory))
@@ -31,6 +34,12 @@ public class PreferredLanguageContainer
         }
     }
 
+    /// <summary>
+    /// Will attempt to load the user's preffered language from the container's file path
+    /// </summary>
+    /// <returns>
+    /// Will either return the user's language preference or determine a suitable default with LocaleHelper
+    /// </returns>
     public static string LoadLanguageCode()
     {
         ValidateDirectory();
@@ -64,6 +73,12 @@ public class PreferredLanguageContainer
         }
     }
 
+    /// <summary>
+    /// Will save the container to its file path
+    /// </summary>
+    /// <param name="preferredLanguageCode">
+    /// Container that stores the language code
+    /// </param>
     public static void SaveLanguageCode(PreferredLanguageContainer preferredLanguageCode)
     {
         ValidateDirectory();
