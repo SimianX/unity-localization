@@ -2,16 +2,32 @@
 	"items":
 	[
 		{
-			"key": "DEMO.MENU.HEADER.LABEL_TEXT",
-			"value": "Démo de localisation"
+			"key": "TEXT.PROJECT_NAME",
+			"value": "Localisation avec JSON"
 		},
 		{
-			"key": "DEMO.MENU.LOCALE.LABEL_TEXT",
+			"key": "TEXT.SCENE_SELECTION_HEADER",
+			"value": "Scènes de démonstration"
+		},
+		{
+			"key": "TEXT.LOAD_DROPDOWN_SCENE",
+			"value": "Liste déroulante des paramètres de langue"
+		},
+		{
+			"key": "TEXT.LOAD_BUTTONS_SCENE",
+			"value": "Boutons des paramètres de langue"
+		},
+		{
+			"key": "TEXT.TRIGGER_QUIT",
+			"value": "Quitter"
+		},
+		{
+			"key": "TEXT.LANGUAGE_LABEL",
 			"value": "Langue"
 		},
 		{
-			"key": "DEMO.MENU.INFO.LABEL_TEXT",
-			"value": "Ceci est une démonstration de localisation utilisant JSON "
+			"key": "TEXT.DEMO_INFO",
+			"value": "Ceci est une démonstration de localisation utilisant JSON"
 		}
 	]
 }

@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/LoadingScene.unity
     guid: e3ba2dad38daaf840852b5b06d3dd29c
   - enabled: 1
-    path: Assets/Scenes/DemoJSON.unity
+    path: Assets/Scenes/DemoMenu.unity
+    guid: c0055b72093c80244a523aee86a234b3
+  - enabled: 1
+    path: Assets/Scenes/OverrideThroughDropdown.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/LanguageOverrideWithButtons.unity
+    path: Assets/Scenes/OverrideThroughButtons.unity
     guid: 2a9e4d6404a6d60499f44885fb0752f8
   m_configObjects: {}
