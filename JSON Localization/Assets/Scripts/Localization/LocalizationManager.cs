@@ -6,32 +6,37 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 
+/// <summary>
+/// Singleton that stores a dictionary of localized string values for the loaded language
+/// </summary>
 public class LocalizationManager : MonoBehaviour
 {
-    // String constants used to build the dict file path
+    /* Path Values */
     public const string FILE_EXTENSION = ".json";
     public const string FOLDER_IN_STREAMMING_ASSETS_NAME = "Locale";
     public const string FILENAME_PREFIX = "locale_";
 
-    public static LocalizationManager Instance { get; private set; } // Singleton Instance set during Awake
+    public static LocalizationManager Instance { get; private set; }    // Singleton Instance set during Awake
 
-    public bool Ready { get; private set; } // Used by the Loading Screen Manager to tell when this this manager's Start coroutine has finished
+    public bool Ready { get; private set; }                             // Used by the Loading Screen Manager to tell when this this manager's Start coroutine has finished
 
-    private Dictionary<string, string> _localizedDictionary; // A dictionary built during the manager's start coroutine.
-                                                             // Used to retrieve text for Localized Text components
+    public string LoadedLanguage { get; private set; }                  // Stores the 2-character ISO language code. Used for building a path to the locale dict}
 
-    private StringBuilder _filenameStringBuilder;   // Used to build the path to the locale-dependent JSON dictionary stored in the StreamingAssets directory
-    private LocalizationData _loadedData;           // Stores the localization data from the conversion of the loaded JSON text
-    private string _loadedJsonText;                 // Stores the JSON text before converting from JSON to the Localization Data csharp container
-    private string _loadedLanguage;                 // Stores the 2-character ISO language code. Used for building a path to the locale dict
+    private Dictionary<string, string> _localizedDictionary;            // A dictionary built during the manager's start coroutine.
+                                                                        // Used to retrieve text for Localized Text components
 
-    public event EventHandler OnLanguageOverride;
+    private StringBuilder _filenameStringBuilder;                       // Used to build the path to the locale-dependent JSON dictionary stored in the StreamingAssets directory
 
-    // Called on scene Awake
+    private LocalizationData _loadedData;                               // Stores the localization data from the conversion of the loaded JSON text
+
+    private string _loadedJsonText;                                     // Stores the JSON text before converting from JSON to the Localization Data csharp container
+
+    public event EventHandler OnLanguageOverride;                       // Triggered whenever a user overrides the current language.
+                                                                        // Useful for letting text elements know they have to change to a new language
+
     private void Awake()
     {
-        // Must set Instance early to avoid race condition with Loading Screen Manager
-        if (Instance == null)
+        if (Instance == null) // Must set Instance early to avoid race condition with Loading Screen Manager
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
@@ -41,19 +46,24 @@ public class LocalizationManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Ready = false;
+        Ready = false; // Set Ready to false before manager is setup
+
+        // Clear out fields
         _filenameStringBuilder = new StringBuilder();
+        _loadedData = null;
         _loadedJsonText = string.Empty;
     }
 
-    // Coroutine started frame before Update
-    private IEnumerator Start()
+    private IEnumerator Start() 
     {
-        yield return StartCoroutine(LoadJsonLanguageData(LocaleHelper.GetSupportedLanguageCode()));
-        Ready = true;
-        _filenameStringBuilder = null;
+        yield return StartCoroutine(LoadJsonLanguageData(LocaleHelper.GetSupportedLanguageCode())); // Load Language
+
+        Ready = true; // Set Ready to true after setup has been completed
+
+        // Clear out fields
+        _filenameStringBuilder = new StringBuilder();
         _loadedData = null;
-        _loadedJsonText = null;
+        _loadedJsonText = string.Empty;
     }
 
     /// <summary>
@@ -80,7 +90,7 @@ public class LocalizationManager : MonoBehaviour
         }
         else
         {
-            _loadedLanguage = languageCode;
+            LoadedLanguage = languageCode;
 
             // Convert JSON text to Localization Data class
             _loadedData = JsonUtility.FromJson<LocalizationData>(_loadedJsonText);
@@ -94,7 +104,7 @@ public class LocalizationManager : MonoBehaviour
                 catch (Exception e)
                 {
                     // Log the exception
-                    Debug.LogError("Failed to parse loaded Data for " + _loadedLanguage + " language." + " E message: " + e.Message);
+                    Debug.LogError("Failed to parse loaded Data for " + LoadedLanguage + " language." + " E message: " + e.Message);
                 }
             });
             _filenameStringBuilder.Length = 0;
@@ -127,15 +137,13 @@ public class LocalizationManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator LoadFileContents(string filePath)
     {
-        // Http paths are currently unused in the project, don't worry
-        if (filePath.Contains("://"))
+        if (filePath.Contains("://")) // Http paths are currently unused in the project, don't worry
         {
             UnityWebRequest www = UnityWebRequest.Get(filePath);
             yield return www.SendWebRequest();
             if (www.isNetworkError || www.isHttpError)
             {
-                // Log an error due to missing file
-                Debug.LogError($"Missing web file: " + filePath);
+                Debug.LogError($"Missing web file: " + filePath); // Missing file
             }
 
             _loadedJsonText = www.downloadHandler.text;
@@ -144,18 +152,17 @@ public class LocalizationManager : MonoBehaviour
         {
             if (File.Exists(filePath))
             {
-                _loadedJsonText = File.ReadAllText(filePath);
+                _loadedJsonText = File.ReadAllText(filePath); // Store raw JSON into field
             }
             else
             {
-                // Log an error due to missing file
-                Debug.LogError("Missing local file: " + filePath);
+                Debug.LogError("Missing local file: " + filePath); // Missing file
             }
         }
     }
 
     /// <summary>
-    /// Retrives a string value for the corresponding localization key
+    /// Retrives a string value corresponding to the Localization Key
     /// </summary>
     /// <param name="localizationKey">
     /// Key used to retrieve text from the active locale dict
@@ -175,15 +182,25 @@ public class LocalizationManager : MonoBehaviour
             return _localizedDictionary[localizationKey];
         }
 
-        throw new MissingLocalizationException(string.Format("Missing localization for key: {0} and language: {1}.", localizationKey, _loadedLanguage));
+        throw new MissingLocalizationException(string.Format("Missing localization for key: {0} and language: {1}.", localizationKey, LoadedLanguage));
     }
 
+    /// <summary>
+    /// Sets a new system language for the current runtime.
+    /// </summary>
+    /// <param name="languageCode">
+    /// Two character ISO language code. All supported languages can be found in ApplicationLocale
+    /// </param>
+    /// <returns></returns>
     public IEnumerator OverrideLanguage(string languageCode)
     {
-        Ready = false;
-        _filenameStringBuilder = new StringBuilder();
-        yield return StartCoroutine(LoadJsonLanguageData(languageCode));
-        OnLanguageOverride?.Invoke(this, EventArgs.Empty);
-        Ready = true;
+        if (Ready) // Only let one override process execute at a time
+        {
+            Ready = false;
+            _filenameStringBuilder = new StringBuilder();
+            yield return StartCoroutine(LoadJsonLanguageData(languageCode));
+            OnLanguageOverride?.Invoke(this, EventArgs.Empty);
+            Ready = true;
+        }
     }
 }

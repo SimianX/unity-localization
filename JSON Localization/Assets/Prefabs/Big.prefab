@@ -140,7 +140,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1753564493478322669}
-        m_MethodName: OverrideLanguage
+        m_MethodName: TriggerOverride
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
