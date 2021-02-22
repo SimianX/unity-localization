@@ -39,7 +39,7 @@ public class PreferredLanguageContainer
         {
             if (!File.Exists(Path))
             {
-                throw new Exception("Could not find Preferred Language file!");
+                throw new Exception("Could not find Preferred Language file");
             }
 
             string json = File.ReadAllText(Path);
@@ -48,10 +48,18 @@ public class PreferredLanguageContainer
                 throw new Exception("JSON is empty");
             }
 
-            return JsonUtility.FromJson<PreferredLanguageContainer>(json).languageCode;
+            string languageCode = JsonUtility.FromJson<PreferredLanguageContainer>(json).languageCode;
+
+            if (!LocaleHelper.AllSupportedLanguageCodes.Contains(languageCode))
+            {
+                throw new Exception(string.Format("Language code \"{0}\" is unsupported", languageCode));
+            }
+
+            return languageCode;
         }
-        catch
+        catch (Exception ex)
         {
+            Debug.LogWarning(ex + "\nDeriving default language from OS locale");
             return new PreferredLanguageContainer().languageCode;
         }
     }
