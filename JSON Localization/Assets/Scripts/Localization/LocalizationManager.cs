@@ -11,7 +11,7 @@ using UnityEngine.Networking;
 /// </summary>
 public class LocalizationManager : MonoBehaviour
 {
-    /* Path Values */
+    /* Locale Dict Path Values */
     public const string FILE_EXTENSION = ".json";
     public const string FOLDER_IN_STREAMMING_ASSETS_NAME = "Locale";
     public const string FILENAME_PREFIX = "locale_";
@@ -20,7 +20,7 @@ public class LocalizationManager : MonoBehaviour
 
     public bool Ready { get; private set; }                             // Used by the Loading Screen Manager to tell when this this manager's Start coroutine has finished
 
-    public string LoadedLanguage { get; private set; }                  // Stores the 2-character ISO language code. Used for building a path to the locale dict}
+    public string LoadedLanguageCode { get; private set; }              // Stores the 2-character ISO language code. Used for building a path to the locale dict}
 
     private Dictionary<string, string> _localizedDictionary;            // A dictionary built during the manager's start coroutine.
                                                                         // Used to retrieve text for Localized Text components
@@ -56,7 +56,7 @@ public class LocalizationManager : MonoBehaviour
 
     private IEnumerator Start() 
     {
-        yield return StartCoroutine(LoadJsonLanguageData(LocaleHelper.GetSupportedLanguageCode())); // Load Language
+        yield return StartCoroutine(LoadJsonLanguageData(PreferredLanguageContainer.LoadLanguageCode())); // Load Language
 
         Ready = true; // Set Ready to true after setup has been completed
 
@@ -90,7 +90,7 @@ public class LocalizationManager : MonoBehaviour
         }
         else
         {
-            LoadedLanguage = languageCode;
+            LoadedLanguageCode = languageCode;
 
             // Convert JSON text to Localization Data class
             _loadedData = JsonUtility.FromJson<LocalizationData>(_loadedJsonText);
@@ -104,7 +104,7 @@ public class LocalizationManager : MonoBehaviour
                 catch (Exception e)
                 {
                     // Log the exception
-                    Debug.LogError("Failed to parse loaded Data for " + LoadedLanguage + " language." + " E message: " + e.Message);
+                    Debug.LogError("Failed to parse loaded Data for " + LoadedLanguageCode + " language." + " E message: " + e.Message);
                 }
             });
             _filenameStringBuilder.Length = 0;
@@ -182,7 +182,7 @@ public class LocalizationManager : MonoBehaviour
             return _localizedDictionary[localizationKey];
         }
 
-        throw new MissingLocalizationException(string.Format("Missing localization for key: {0} and language: {1}.", localizationKey, LoadedLanguage));
+        throw new MissingLocalizationException(string.Format("Missing localization for key: {0} and language: {1}.", localizationKey, LoadedLanguageCode));
     }
 
     /// <summary>
@@ -198,7 +198,10 @@ public class LocalizationManager : MonoBehaviour
         {
             Ready = false;
             _filenameStringBuilder = new StringBuilder();
+
             yield return StartCoroutine(LoadJsonLanguageData(languageCode));
+
+            PreferredLanguageContainer.SaveLanguageCode(new PreferredLanguageContainer(LoadedLanguageCode));
             OnLanguageOverride?.Invoke(this, EventArgs.Empty);
             Ready = true;
         }
