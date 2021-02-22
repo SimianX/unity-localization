@@ -22,6 +22,10 @@
 			"value": "Quit"
 		},
 		{
+			"key": "TEXT.TRIGGER_BACK",
+			"value": "Back"
+		},
+		{
 			"key": "TEXT.LANGUAGE_LABEL",
 			"value": "Language"
 		},
