@@ -30,7 +30,7 @@ namespace SimianX.Localization
 
         private StringBuilder _filenameStringBuilder;                       // Used to build the path to the locale-dependent JSON dictionary stored in the StreamingAssets directory
 
-        private LocalizationData _loadedData;                 // Stores the localization data from the conversion of the loaded JSON text
+        private LocalizationData _loadedData;                               // Stores the localization data from the conversion of the loaded JSON text
 
         private string _loadedJsonText;                                     // Stores the JSON text before converting from JSON to the Localization Data csharp container
 
