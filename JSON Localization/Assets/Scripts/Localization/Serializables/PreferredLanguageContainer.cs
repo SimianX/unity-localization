@@ -2,87 +2,90 @@
 using System.IO;
 using UnityEngine;
 
-/// <summary>
-/// Container for storing the user's language preference
-/// </summary>
-[Serializable]
-public class PreferredLanguageContainer
+namespace SimianX.Localization.Serializables
 {
-    public const string RootDirectory = "Preferences";
-    public const string Path = RootDirectory + "/" + "LanguageCode.json";
-
-    public string languageCode;
-
-    public PreferredLanguageContainer()
-    {
-        languageCode = LocaleHelper.GetSupportedLanguageCode(); // Default to the system locale if supported
-    }
-
-    public PreferredLanguageContainer(string languageCode)
-    {
-        this.languageCode = languageCode;
-    }
-
     /// <summary>
-    /// If the Root Directory doesn't exist, make it
+    /// Container for storing the user's language preference
     /// </summary>
-    private static void ValidateDirectory()
+    [Serializable]
+    public class PreferredLanguageContainer
     {
-        if (!Directory.Exists(RootDirectory))
+        public const string RootDirectory = "Preferences";
+        public const string Path = RootDirectory + "/" + "LanguageCode.json";
+
+        public string languageCode;
+
+        public PreferredLanguageContainer()
         {
-            Directory.CreateDirectory(RootDirectory);
+            languageCode = LocaleHelper.GetSupportedLanguageCode(); // Default to the system locale if supported
         }
-    }
 
-    /// <summary>
-    /// Will attempt to load the user's preffered language from the container's file path
-    /// </summary>
-    /// <returns>
-    /// Will either return the user's language preference or determine a suitable default with LocaleHelper
-    /// </returns>
-    public static string LoadLanguageCode()
-    {
-        ValidateDirectory();
-
-        try
+        public PreferredLanguageContainer(string languageCode)
         {
-            if (!File.Exists(Path))
-            {
-                throw new Exception("Could not find Preferred Language file");
-            }
-
-            string json = File.ReadAllText(Path);
-            if (string.IsNullOrEmpty(json))
-            {
-                throw new Exception("JSON is empty");
-            }
-
-            string languageCode = JsonUtility.FromJson<PreferredLanguageContainer>(json).languageCode;
-
-            if (!LocaleHelper.AllSupportedLanguageCodes.Contains(languageCode))
-            {
-                throw new Exception(string.Format("Language code \"{0}\" is unsupported", languageCode));
-            }
-
-            return languageCode;
+            this.languageCode = languageCode;
         }
-        catch (Exception ex)
+
+        /// <summary>
+        /// If the Root Directory doesn't exist, make it
+        /// </summary>
+        private static void ValidateDirectory()
         {
-            Debug.LogWarning(ex + "\nDeriving default language from OS locale");
-            return new PreferredLanguageContainer().languageCode;
+            if (!Directory.Exists(RootDirectory))
+            {
+                Directory.CreateDirectory(RootDirectory);
+            }
         }
-    }
 
-    /// <summary>
-    /// Will save the container to its file path
-    /// </summary>
-    /// <param name="preferredLanguageCode">
-    /// Container that stores the language code
-    /// </param>
-    public static void SaveLanguageCode(PreferredLanguageContainer preferredLanguageCode)
-    {
-        ValidateDirectory();
+        /// <summary>
+        /// Will attempt to load the user's preffered language from the container's file path
+        /// </summary>
+        /// <returns>
+        /// Will either return the user's language preference or determine a suitable default with LocaleHelper
+        /// </returns>
+        public static string LoadLanguageCode()
+        {
+            ValidateDirectory();
 
-        File.WriteAllText(Path, JsonUtility.ToJson(preferredLanguageCode));
+            try
+            {
+                if (!File.Exists(Path))
+                {
+                    throw new Exception("Could not find Preferred Language file");
+                }
+
+                string json = File.ReadAllText(Path);
+                if (string.IsNullOrEmpty(json))
+                {
+                    throw new Exception("JSON is empty");
+                }
+
+                string languageCode = JsonUtility.FromJson<PreferredLanguageContainer>(json).languageCode;
+
+                if (!LocaleHelper.AllSupportedLanguageCodes.Contains(languageCode))
+                {
+                    throw new Exception(string.Format("Language code \"{0}\" is unsupported", languageCode));
+                }
+
+                return languageCode;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning(ex + "\nDeriving default language from OS locale");
+                return new PreferredLanguageContainer().languageCode;
+            }
+        }
+
+        /// <summary>
+        /// Will save the container to its file path
+        /// </summary>
+        /// <param name="preferredLanguageCode">
+        /// Container that stores the language code
+        /// </param>
+        public static void SaveLanguageCode(PreferredLanguageContainer preferredLanguageCode)
+        {
+            ValidateDirectory();
+
+            File.WriteAllText(Path, JsonUtility.ToJson(preferredLanguageCode));
+        }
     }
 }
