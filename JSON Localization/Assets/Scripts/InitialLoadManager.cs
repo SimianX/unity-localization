@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using SimianX.Localization;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

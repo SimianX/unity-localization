@@ -260,7 +260,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 268445503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52d37f812ed75c84da288c54b5b13a93, type: 3}
+  m_Script: {fileID: 11500000, guid: 8dc92df2ee0870f47ac2b07e398a6a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nextSceneName: DemoMenu
