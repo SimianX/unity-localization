@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.simianx.localization": {
+      "version": "ssh://git@gitlab.com/SimianX/simple-localization.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.textmeshpro": "2.1.3"
+      },
+      "hash": "bb0bfa04ae5f4b295fe0e53dcf6a8fab96a965d0"
+    },
     "com.unity.2d.animation": {
       "version": "3.2.6",
       "depth": 0,
