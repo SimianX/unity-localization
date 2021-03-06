@@ -638,10 +638,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: 85a9fee1-a95c-45dd-ae2c-b660bb0664c3
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: JSON Localization
+  organizationId: simianx
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
